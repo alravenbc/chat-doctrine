@@ -1,0 +1,10 @@
+# config/yaml/Log.dcm.yml
+Log:
+  type: entity
+  id: { id: { type: integer, generator: {  strategy: AUTO } }}
+  fields:
+    message: { type: string, length: 1200 }
+
+  manyToOne:
+    Chat:
+      targetEntity: Chat

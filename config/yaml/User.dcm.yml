@@ -1,7 +1,6 @@
 # config/yaml/User.dcm.yml
 User:
   type: entity
-  table: users
   id: { id: { type: integer, generator: {  strategy: AUTO } }}
   fields:
     username: { type: string, length: 12 }

@@ -176,7 +176,10 @@ class User
      */
     public function chat($message)
     {
-        file_put_contents('chat.log', $message . "\n", FILE_APPEND);
+        $log = new Log();
+        $log->setMessage($message)->setChat(Framework::getInstance()->getActiveChat());
+        Framework::getInstance()->getEntityManager()->persist($log);
+        Framework::getInstance()->save();
     }
 
 

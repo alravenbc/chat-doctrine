@@ -1,7 +1,6 @@
-# config/yaml/User.dcm.yml
+# config/yaml/Chat.dcm.yml
 Chat:
   type: entity
-  table: chats
   id: { id: { type: integer, generator: {  strategy: AUTO } }}
   fields:
     topic:     { type: string }
@@ -9,9 +8,6 @@ Chat:
     Users:
       targetEntity: User
       mappedBy: Chat
-User:
-  type: entity
-  manyToOne:
-    Chat:
-      targetEntity: Chat
-      inversedBy: Users
+    Log:
+      targetEntity: Log
+      mappedBy: Chat

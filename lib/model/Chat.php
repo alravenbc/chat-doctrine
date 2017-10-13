@@ -102,21 +102,12 @@ class Chat
      * @param int $n
      * @return array
      */
-    public function getLinesFromEnd( $file, $n = 50 )
+    public function getLinesFromEnd()
     {
-        $result = array();
-        $handle = fopen($file, "r");
-        while(!feof($handle)){
-            $result[] = fgets($handle);
-            if (count($result) > 1000)
-            {
-                // slice to last $n items to better consume memory
-                $result = array_slice($result,-$n);
-            }
-        }
-        fclose($handle);
-        // finally, slice to last $n items
-        $result = array_slice($result,-$n);
+        $query = Framework::getInstance()->getEntityManager()->createQuery('SELECT u FROM Log u ORDER BY u.id DESC');
+        $query->setMaxResults(32);
+        $result = $query->getResult();
+        $result = array_reverse($result);
         return $result;
     }
     /**
@@ -149,4 +140,60 @@ class Chat
     }
 
 
+    /**
+     * @var string
+     */
+    private $log;
+
+
+    /**
+     * Set log
+     *
+     * @param string $log
+     * @return Chat
+     */
+    public function setLog($log)
+    {
+        $this->log = $log;
+
+        return $this;
+    }
+
+    /**
+     * Get log
+     *
+     * @return string 
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $Log;
+
+
+    /**
+     * Add Log
+     *
+     * @param \Log $log
+     * @return Chat
+     */
+    public function addLog(\Log $log)
+    {
+        $this->Log[] = $log;
+
+        return $this;
+    }
+
+    /**
+     * Remove Log
+     *
+     * @param \Log $log
+     */
+    public function removeLog(\Log $log)
+    {
+        $this->Log->removeElement($log);
+    }
 }

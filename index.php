@@ -83,7 +83,7 @@ $chat->addUser($user);
     <div style="height: 600px; background-color: rgba(169,169,169,0.22); position: relative; overflow-y: scroll; display: flex;  flex-direction: column-reverse;">
         <?php
 
-        foreach($chat->getLinesFromEnd("chat.log") as $line)
+        foreach($chat->getLinesFromEnd() as $line)
         {
             echo(htmlspecialchars($line)).'<br>';
         }

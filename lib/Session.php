@@ -22,7 +22,7 @@ class Session
             {
                 $_SESSION['id'] = $user->getId();
                 $user->setNick($username);
-                Framework::getInstance()->getEntityManager()->flush();
+                Framework::getInstance()->save();
                 $this->setFlash("Welcome, " . Framework::getInstance()->getActiveUser()->getNick() . ", U can now chat!");
                 Framework::getInstance()->getActiveUser()->chat('User ' . Framework::getInstance()->getActiveUser()->getNick() . ' has logged in!');
                 file_put_contents('online.log', "\n" . Framework::getInstance()->getActiveUser()->getNick() . "\n", FILE_APPEND);

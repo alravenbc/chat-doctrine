@@ -64,6 +64,12 @@ class Framework
 
     }
 
+    public function save()
+    {
+        $this->getEntityManager()->flush();
+    }
+
+
     /**
      * @return \Doctrine\ORM\EntityRepository
      */
@@ -185,7 +191,7 @@ class Framework
         $this->getActiveUser()->statusInChat( $this->getActiveUser() . " sets topic to $topic" );
         $topic = $topic . " (set by " . $this->getActiveUser() . ")";
         $this->getActiveChat()->setTopic($topic);
-        Framework::getInstance()->getEntityManager()->flush();
+        $this->save();
     }
 
 
