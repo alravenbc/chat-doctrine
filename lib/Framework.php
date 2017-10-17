@@ -172,11 +172,11 @@ class Framework
     }
 
     /**
-     * clears chat.log
+     * clears log
      */
     public function executeClear()
     {
-        file_put_contents( "chat.log", '');
+        $this->getEntityManager()->createQuery('DELETE Log p')->execute();
     }
 
     /**

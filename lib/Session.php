@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class Session
+ */
 class Session
 {
 
@@ -83,6 +86,10 @@ class Session
         $_SESSION['flash'] = $message;
     }
 
+    /**
+     * get Id
+     * @return bool
+     */
     public function getId()
     {
         return isset($_SESSION['id']) ? $_SESSION['id'] : false;
